@@ -1,0 +1,54 @@
+li { list-style-type: none;
+}
+.logoOne {
+    width: 28px;
+    height: 28px;
+}
+
+
+a {
+    text-decoration: black;
+    color: rgb(0, 0, 0);
+    font: 38px Comfortaa;
+    font-weight: bold;
+    
+
+}
+a:hover {
+    color: #ff0000;
+
+}
+.navigation-menu {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end
+    
+}
+header{
+    position: sticky;
+    top: 0;
+    background-color: aliceblue;
+    padding: 5px;
+}
+
+main {
+    
+    background-color: black;
+    text-align: center;
+    padding: 5px;
+    height: 200vh;
+}
+body {
+    margin-left: 0;
+    margin-right: 0;
+}
+.logoTwo {
+    width: 250px;
+    position: relative;
+    top: 100px;
+    border-radius: 50%;
+}
+.logoThree {
+    width: 100%;
+    
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="Contact-form">
+        <div>
+            <label>
+                Email:
+                <input type="email" name="email" placeholder="Enter your email">
+            </label>
+        </div>
+        <div>
+            <label>
+                Password:
+                <input required type="password" name="password" placeholder="Enter your password">
+            </label>
+        </div>
+        <div>
+            Your age:
+            <div>
+            <input id="age1" type="radio" name="age" value="0-18">
+            <label for="age1">0-18</label>
+            </div>
+            <div>
+                <input id="age2" type="radio" name="age" value="19-50">
+                <label for="age2">19-50</label>
+            </div>
+            <div>
+                <input id="age3" type="radio" name="age" value="51+">
+                <label for="age3">50+</label>
+            </div>
+        </div>
+        <div>
+            <input type="color" name="color" id="favorite-color">
+            <label for="favorite-color">Favorite-color</label>
+        </div>
+        <div>
+            <textarea name="text" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <input type="date" id="birthday" name="birthday">
+            <label for="birthday">Birthday</label>
+        </div>
+        <div>
+            <input type="range" name="friendsCount" id="friendsCount" min="0" max="500">
+            <label for="friendsCount">Friends count </label>
+        </div>
+        <div>
+            
+
+            <label>
+                Contact-form:
+                <select name="Contact" form="Contact-form">
+                    <option value="phone">Phone number</option>
+                    <option value="mail">Mail</option>
+                    <option selected value="telegram">Telegram</option>
+                </select>
+            </label>
+        </div>
+        <div>
+            <input type="checkbox" name="agree_spam" id="agree1" value="Yes">
+            <label for="agree1">Agree for mailing</label>
+        </div>
+        <div>
+            <input type="checkbox" name="agree_terms" id="agree2" value="Yes">
+            <label for="agree2">Agree with terms</label>
+        </div>
+        <div>
+            <input type="checkbox" name="agree_else" id="agree3" value="Yes">
+            <label for="agree3">Agree averything at all</label>
+        </div>
+        <div>
+            <p><input type="file" name="userPhoto" tabindex=""></p>
+        </div>
+        <div>
+            <p>Action</p>
+            <button type="submit">Send</button>
+            <button type="reset">Reset</button>
+        </div>
+    </form>
+</body>
+</html>
