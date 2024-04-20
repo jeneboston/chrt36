@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <style>
+        #gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+
+        }
+        .thumbnail {
+            margin: 5px;
+            
+        }
+        .thumbnail img {
+            height: 300px;
+            cursor: pointer;            
+        }
+        .full-image-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            text-align: center;
+        }
+        .full-image {
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 50px;
+        }
+        #closeButton {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+        }
+        .thumbnail{
+            border: 2px solid #2c3e50;
+        }
+        h1{
+            text-align: center;
+            color: #2c3e50;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 50px;
+            margin-bottom: 50px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>GALLERY </h1>
+    </header>
+    <div id="gallery">
+        <div class="thumbnail">
+            <img src="/Gallery-mini/image1.jpg" alt="1">
+            <img src="/Gallery-mini/image2.jpg" alt="1">
+            <img src="/Gallery-mini/image3.jpg" alt="1">
+            <img src="/Gallery-mini/image4.jpg" alt="1">
+        </div>
+
+        <div class="thumbnail">
+            <img src="/Gallery-mini/image5.jpg" alt="2">
+            <img src="/Gallery-mini/image6.jpg" alt="2">
+            <img src="/Gallery-mini/image7.jpg" alt="2">
+            <img src="/Gallery-mini/image8.jpg" alt="2">
+        </div>
+
+        <div class="thumbnail">
+            <img src="/Gallery-mini/image9.jpg" alt="3">
+            <img src="/Gallery-mini/image10.jpg" alt="3">
+            <img src="/Gallery-mini/image11.jpg" alt="3">
+            <img src="/Gallery-mini/image12.jpg" alt="3">
+        </div>
+    </div>
+
+    <div class="full-image-container" id="fullImageViewer">
+        <span id="closeButton">&times;</span>
+        <img class="full-image" src="" alt="">
+    </div>
+
+    <script>
+        const thumbnails = document.querySelectorAll('.thumbnail img');
+        const fullImageViewer = document.getElementById('fullImageViewer');
+        const fullImage = fullImageViewer.querySelector('.full-image');
+        const closeButton = document.getElementById('closeButton');
+        let isOpen = false;
+        let currentIndex = 0;
+
+        thumbnails.forEach((thumbnail, index) => {
+            thumbnail.addEventListener('click', function() {
+                const src = this.getAttribute('src');
+                fullImage.setAttribute('src', src);
+                fullImageViewer.style.display = 'block';
+                isOpen = true;
+                currentIndex = index;
+            });
+        });
+
+        fullImageViewer.addEventListener('click', function(event) {
+            if (event.target === fullImageViewer && isOpen) {
+                fullImageViewer.style.display = 'none';
+                isOpen = false;
+            }
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (isOpen) {
+                if (event.key === 'ArrowLeft') {
+                    currentIndex = (currentIndex - 1 + thumbnails.length) % thumbnails.length;
+                    const src = thumbnails[currentIndex].getAttribute('src');
+                    fullImage.setAttribute('src', src);
+                } else if (event.key === 'ArrowRight') {
+                    currentIndex = (currentIndex + 1) % thumbnails.length;
+                    const src = thumbnails[currentIndex].getAttribute('src');
+                    fullImage.setAttribute('src', src);
+                }
+            }
+        });
+
+        let startX = 0;
+        let startY = 0;
+
+        fullImageViewer.addEventListener('touchstart', function(event) {
+            if (isOpen && event.touches.length === 1) {
+                startX = event.touches[0].clientX;
+                startY = event.touches[0].clientY;
+            }
+        });
+
+        fullImageViewer.addEventListener('touchmove', function(event) {
+            if (isOpen && event.touches.length === 1) {
+                const deltaX = event.touches[0].clientX - startX;
+                const deltaY = event.touches[0].clientY - startY;
+
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    if (deltaX > 0) {
+                        currentIndex = (currentIndex - 1 + thumbnails.length) % thumbnails.length;
+                    } else {
+                        currentIndex = (currentIndex + 1) % thumbnails.length;
+                    }
+                    const src = thumbnails[currentIndex].getAttribute('src');
+                    fullImage.setAttribute('src', src);
+                }
+
+                startX = event.touches[0].clientX;
+                startY = event.touches[0].clientY;
+            }
+        });
+    </script>
+</body>
+</html>
